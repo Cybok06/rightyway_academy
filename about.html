@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>About • Rightway Academy</title>
+  <title>About • Right Way Academy</title>
 
   <!-- Favicon + App Icon -->
   <link rel="icon" href="logo.png" type="image/png"/>
@@ -26,21 +26,6 @@
           },
           fontFamily: { display: ["Work Sans", "system-ui", "sans-serif"] },
           borderRadius: { DEFAULT:"0.5rem", xl:"0.75rem", "2xl":"1rem", full:"9999px" },
-          letterSpacing: { tightest: "-.02em" },
-          boxShadow: {
-            glow: "0 10px 30px rgba(249,115,6,.25)",
-            card: "0 8px 20px rgba(0,0,0,.06)"
-          },
-          keyframes: {
-            floatup: { "0%":{opacity:0, transform:"translateY(18px)"}, "100%":{opacity:1, transform:"translateY(0)"} },
-            parallax: { "0%":{transform:"translate3d(0,0,0)"}, "100%":{transform:"translate3d(0,12px,0)"} },
-            shine: { "0%":{backgroundPosition:"-200% 0"}, "100%":{backgroundPosition:"200% 0"} }
-          },
-          animation: {
-            "floatup":"floatup .7s ease forwards",
-            "parallax":"parallax 6s ease-in-out infinite alternate",
-            "shine":"shine 2.4s linear infinite"
-          }
         },
       },
     }
@@ -49,58 +34,30 @@
   <style>
     :root { --dur: 800ms; }
     body { min-height: 100dvh; }
-    .tracking-tightest{ letter-spacing:-.02em; }
 
-    /* Reveal animations */
-    .slide-left{ opacity:0; transform:translateX(-32px); transition:opacity var(--dur) ease, transform var(--dur) ease; }
-    .fade-up{ opacity:0; transform:translateY(16px); transition:opacity var(--dur) ease, transform var(--dur) ease; }
-    .show{ opacity:1; transform:none; }
+    /* Animations (slide in from left) */
+    .slide-left { opacity: 0; transform: translateX(-32px); transition: opacity var(--dur) ease, transform var(--dur) ease; }
+    .show       { opacity: 1; transform: translateX(0); }
 
-    /* Micro-interactions */
-    .lift{ transition: transform .28s ease, box-shadow .28s ease; }
-    .lift:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
-    .btn-shine{ background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.35), rgba(255,255,255,.08)); background-size:200% 100%; }
-    .btn-shine:hover{ animation: shine 1.8s linear infinite; }
-    .tilt{ transition: transform .25s ease, box-shadow .25s ease; transform-style: preserve-3d; }
-    .tilt:hover{ transform: rotate3d(1,1,0,6deg) translateY(-2px); }
+    .fade-up    { opacity: 0; transform: translateY(16px); transition: opacity var(--dur) ease, transform var(--dur) ease; }
+    .in         { opacity: 1; transform: translateY(0); }
 
-    /* Decorative blobs */
-    .blob{ filter: blur(30px); opacity:.35; pointer-events:none; }
+    .lift:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
 
-    /* Fancy gradient borders (Core Values cards) */
-    .g-border{
-      position: relative;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(249,115,6,.25), rgba(249,115,6,0)) padding-box,
-                  linear-gradient(135deg, rgba(249,115,6,.8), rgba(255,255,255,.2)) border-box;
-      border: 1px solid transparent;
-    }
-    .corner{
-      position:absolute; width:14px; height:14px; border:2px solid rgba(249,115,6,.6); border-radius:4px;
-    }
-    .corner.tl{ top:8px; left:8px; border-right:none; border-bottom:none; }
-    .corner.tr{ top:8px; right:8px; border-left:none; border-bottom:none; }
-    .corner.bl{ bottom:8px; left:8px; border-right:none; border-top:none; }
-    .corner.br{ bottom:8px; right:8px; border-left:none; border-top:none; }
+    .chip { background: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.4); }
   </style>
 </head>
-<body class="bg-background-light text-zinc-900 font-display">
-  <!-- Decorative blobs -->
-  <div class="pointer-events-none fixed inset-0 -z-10">
-    <div class="blob absolute -top-10 -left-10 h-52 w-52 rounded-full bg-primary/30 animate-parallax"></div>
-    <div class="blob absolute bottom-0 right-0 h-64 w-64 rounded-full bg-orange-300/40 animate-parallax" style="animation-delay:.8s"></div>
-  </div>
-
+<body class="bg-background-light dark:bg-background-dark font-display text-zinc-900 dark:text-zinc-100">
   <div class="relative min-h-screen w-full">
-    <!-- Header / Navbar (bigger logo + name beside) -->
-    <header class="sticky top-0 z-50 bg-background-light/90 backdrop-blur-md border-b border-zinc-200/70">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-zinc-200/70 dark:border-zinc-800/70">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between py-3">
-          <a href="index.html" class="flex items-center gap-3 group" aria-label="Rightway Academy - Home">
-            <img src="logo.png" alt="Rightway Academy" class="h-14 md:h-16 w-auto group-hover:drop-shadow transition"/>
-            <span class="hidden sm:block text-xl md:text-2xl font-black tracking-tightest">
-              RIGHTWAY <span class="text-primary">ACADEMY</span>
-            </span>
+          <!-- Logo (visible, accessible) -->
+          <a href="index.html" class="flex items-center gap-2" aria-label="Right Way Academy - Home">
+            <!-- use a larger logo so it’s prominent on About -->
+            <img src="logo.png" alt="Right Way Academy" style="height:50px;width:auto"/>
           </a>
 
           <!-- Desktop Nav -->
@@ -110,7 +67,7 @@
             <a class="hover:text-primary transition" href="academics.html">Academics</a>
             <a class="hover:text-primary transition" href="news.html">News</a>
             <a class="hover:text-primary transition" href="contact.html">Contact</a>
-            <a href="contact.html" class="ml-2 rounded-full bg-primary px-4 py-2 text-white font-semibold lift btn-shine shadow-glow">Get Admission</a>
+            <a href="contact.html" class="ml-2 rounded-full bg-primary px-4 py-2 text-white font-semibold lift">Get Admission</a>
           </nav>
 
           <!-- Mobile toggler -->
@@ -122,8 +79,8 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden pb-4">
-          <div class="grid gap-2">
+        <div id="mobileMenu" class="hidden md:hidden">
+          <div class="grid gap-2 pb-4">
             <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="index.html">Home</a>
             <a class="rounded-lg px-3 py-2 bg-primary/10 text-primary" href="about.html" aria-current="page">About</a>
             <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="academics.html">Academics</a>
@@ -136,20 +93,19 @@
     </header>
 
     <main>
+
       <!-- Hero -->
       <section class="relative h-[54vh] md:h-[64vh] bg-cover bg-center"
         style="background-image: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.25)), url('image7.jpg');">
         <div class="absolute inset-0 flex items-end">
           <div class="container mx-auto px-4 py-10">
-            <div class="opacity-0 animate-floatup [animation-delay:.05s]">
-              <h1 class="text-white text-4xl md:text-6xl font-black drop-shadow">About Us</h1>
-              <div class="mt-4 flex flex-wrap gap-2">
-                <span class="rounded-full px-3 py-1 text-sm text-white/90 bg-white/10 border border-white/30">Discipline</span>
-                <span class="rounded-full px-3 py-1 text-sm text-white/90 bg-white/10 border border-white/30">Knowledge</span>
-                <span class="rounded-full px-3 py-1 text-sm text-white/90 bg-white/10 border border-white/30">Respect</span>
-                <span class="rounded-full px-3 py-1 text-sm text-white/90 bg-white/10 border border-white/30">Innovation</span>
-                <span class="rounded-full px-3 py-1 text-sm text-white/90 bg-white/10 border border-white/30">Teamwork</span>
-              </div>
+            <h1 class="text-white text-4xl md:text-6xl font-black fade-up in">About Us</h1>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip text-white/90 rounded-full px-3 py-1 text-sm">Discipline</span>
+              <span class="chip text-white/90 rounded-full px-3 py-1 text-sm">Knowledge</span>
+              <span class="chip text-white/90 rounded-full px-3 py-1 text-sm">Respect</span>
+              <span class="chip text-white/90 rounded-full px-3 py-1 text-sm">Innovation</span>
+              <span class="chip text-white/90 rounded-full px-3 py-1 text-sm">Teamwork</span>
             </div>
           </div>
         </div>
@@ -161,12 +117,11 @@
           <article class="slide-left show">
             <div class="flex items-center gap-3 mb-3">
               <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/15 text-primary">
-                <!-- Chat bubble icon -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg>
+                <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor"><path d="M224,56v96a16,16,0,0,1-16,16H160l-24,24-24-24H48a16,16,0,0,1-16-16V56A16,16,0,0,1,48,40H208A16,16,0,0,1,224,56Z"/></svg>
               </span>
               <h2 class="text-3xl font-extrabold">Our Mission</h2>
             </div>
-            <p class="text-zinc-700 leading-relaxed">
+            <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
               To cultivate a nurturing and challenging educational environment that empowers students to achieve
               their full potential, fostering a lifelong love of learning and responsible global citizenship.
             </p>
@@ -175,12 +130,11 @@
           <article class="slide-left show" style="transition-delay:.12s">
             <div class="flex items-center gap-3 mb-3">
               <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/15 text-primary">
-                <!-- Target icon -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4V2Zm1 1v9h9a9 9 0 0 0-9-9Z"/></svg>
+                <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128A96,96,0,1,1,128,32,96.11,96.11,0,0,1,224,128Z"/></svg>
               </span>
               <h2 class="text-3xl font-extrabold">Our Vision</h2>
             </div>
-            <p class="text-zinc-700 leading-relaxed">
+            <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
               To be a leading educational institution recognized for academic excellence, innovative teaching, and
               the holistic development of students.
             </p>
@@ -188,64 +142,30 @@
         </div>
       </section>
 
-      <!-- Core Values (icons + styled borders) -->
-      <section class="px-4 py-12 bg-white/60">
+      <!-- Core Values -->
+      <section class="px-4 py-12 bg-white/60 dark:bg-zinc-900/40">
         <div class="container mx-auto">
           <h3 class="text-3xl font-extrabold text-center mb-8">Core Values</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            <!-- Discipline -->
-            <div class="g-border bg-white p-6 text-center tilt fade-up show">
-              <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-              <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <!-- Shield-check -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 3 6v6c0 5 3.8 9.7 9 10 5.2-.3 9-5 9-10V6l-9-4Zm-1 14-3-3 1.4-1.4L11 12.2l3.6-3.6L16 10l-5 6Z"/></svg>
-              </div>
+            <div class="slide-left show rounded-xl p-6 bg-white dark:bg-zinc-900 border border-zinc-200/70 dark:border-zinc-800/70 text-center">
+              <div class="text-primary text-4xl mb-2">📘</div>
               <h4 class="font-bold">Discipline</h4>
-              <p class="mt-1 text-sm text-zinc-600">We uphold standards that build strong character and focus.</p>
             </div>
-
-            <!-- Knowledge -->
-            <div class="g-border bg-white p-6 text-center tilt fade-up show" style="transition-delay:.06s">
-              <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-              <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <!-- Book -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4a2 2 0 0 1 2-2h6v18H5a2 2 0 0 1-2-2V4Zm16-2h-6v18h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg>
-              </div>
+            <div class="slide-left show rounded-xl p-6 bg-white dark:bg-zinc-900 border border-zinc-200/70 dark:border-zinc-800/70 text-center" style="transition-delay:.06s">
+              <div class="text-primary text-4xl mb-2">🧠</div>
               <h4 class="font-bold">Knowledge</h4>
-              <p class="mt-1 text-sm text-zinc-600">We pursue mastery through curiosity, rigor, and depth.</p>
             </div>
-
-            <!-- Respect -->
-            <div class="g-border bg-white p-6 text-center tilt fade-up show" style="transition-delay:.12s">
-              <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-              <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <!-- Handshake -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M1 12l5-5 6 6-2 2-2-2-2 2-5-5Zm22 0-5 5-6-6 2-2 2 2 2-2 5 5Z"/></svg>
-              </div>
+            <div class="slide-left show rounded-xl p-6 bg-white dark:bg-zinc-900 border border-zinc-200/70 dark:border-zinc-800/70 text-center" style="transition-delay:.12s">
+              <div class="text-primary text-4xl mb-2">🤝</div>
               <h4 class="font-bold">Respect</h4>
-              <p class="mt-1 text-sm text-zinc-600">We value dignity, diversity, and empathy in all relations.</p>
             </div>
-
-            <!-- Innovation -->
-            <div class="g-border bg-white p-6 text-center tilt fade-up show" style="transition-delay:.18s">
-              <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-              <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <!-- Lightbulb -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M9 21h6v-2H9v2Zm3-19a7 7 0 0 0-4 12.9V17h8v-2.1A7 7 0 0 0 12 2Z"/></svg>
-              </div>
+            <div class="slide-left show rounded-xl p-6 bg-white dark:bg-zinc-900 border border-zinc-200/70 dark:border-zinc-800/70 text-center" style="transition-delay:.18s">
+              <div class="text-primary text-4xl mb-2">💡</div>
               <h4 class="font-bold">Innovation</h4>
-              <p class="mt-1 text-sm text-zinc-600">We experiment, adapt, and create future-ready solutions.</p>
             </div>
-
-            <!-- Teamwork -->
-            <div class="g-border bg-white p-6 text-center tilt fade-up show" style="transition-delay:.24s">
-              <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-              <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <!-- Users -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 1a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.3 0-6 1.3-6 3v2h8v-2c0-1.7-2.7-3-6-3Zm8 0c-1.1 0-2.1.2-3 .6a4.1 4.1 0 0 1 3 3.4V19h8v-1c0-1.7-2.7-3-8-3Z"/></svg>
-              </div>
+            <div class="slide-left show rounded-xl p-6 bg-white dark:bg-zinc-900 border border-zinc-200/70 dark:border-zinc-800/70 text-center" style="transition-delay:.24s">
+              <div class="text-primary text-4xl mb-2">👥</div>
               <h4 class="font-bold">Teamwork</h4>
-              <p class="mt-1 text-sm text-zinc-600">We collaborate, communicate, and win together.</p>
             </div>
           </div>
         </div>
@@ -260,15 +180,15 @@
               <div class="mb-8 relative">
                 <div class="absolute -left-[33px] top-1 w-4 h-4 bg-primary rounded-full"></div>
                 <h4 class="font-bold text-primary">Established</h4>
-                <p class="mt-1 text-zinc-700">
-                  Rightway Academy was founded to raise disciplined, well-rounded students who excel
+                <p class="mt-1 text-zinc-700 dark:text-zinc-300">
+                  Right Way Academy was established to raise disciplined, well-rounded students who excel
                   academically and socially.
                 </p>
               </div>
               <div class="relative">
                 <div class="absolute -left-[33px] top-1 w-4 h-4 bg-primary rounded-full"></div>
                 <h4 class="font-bold text-primary">Today</h4>
-                <p class="mt-1 text-zinc-700">
+                <p class="mt-1 text-zinc-700 dark:text-zinc-300">
                   We continue to grow with modern facilities, passionate educators, and a culture of
                   innovation—equipping learners to thrive in a changing world.
                 </p>
@@ -276,8 +196,8 @@
             </div>
           </div>
 
-          <div class="order-1 md:order-2 fade-up show">
-            <div class="rounded-2xl overflow-hidden shadow-xl h-[46vh] bg-cover bg-center tilt"
+          <div class="order-1 md:order-2 fade-up in">
+            <div class="rounded-2xl overflow-hidden shadow-xl h-[46vh] bg-cover bg-center"
                  style="background-image:url('image8.jpg');"></div>
           </div>
         </div>
@@ -285,34 +205,36 @@
 
       <!-- CTA -->
       <section class="container mx-auto px-4 pb-20">
-        <div class="rounded-2xl bg-primary/10 p-8 md:p-10 text-center fade-up show">
+        <div class="rounded-2xl bg-primary/10 dark:bg-primary/20 p-8 md:p-10 text-center fade-up in">
           <h2 class="text-2xl md:text-3xl font-extrabold">Want to learn more?</h2>
-          <p class="mt-3 max-w-2xl mx-auto text-zinc-700">
-            Speak with our team about programs, admissions and life at Rightway Academy.
+          <p class="mt-3 max-w-2xl mx-auto text-zinc-700 dark:text-zinc-300">
+            Speak with our team about programs, admissions and life at Right Way Academy.
           </p>
           <div class="mt-6 flex flex-wrap gap-3 justify-center">
-            <a href="contact.html" class="rounded-full bg-primary px-8 py-3 text-white font-bold hover:scale-105 transition lift btn-shine">Contact Us</a>
+            <a href="contact.html" class="rounded-full bg-primary px-8 py-3 text-white font-bold hover:scale-105 transition">Contact Us</a>
             <a href="academics.html" class="rounded-full border-2 border-primary text-primary px-8 py-3 font-bold hover:bg-primary/10">Explore Academics</a>
           </div>
         </div>
       </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-200 bg-background-light/95">
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 bg-background-light/95 dark:bg-background-dark/95">
       <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <img src="logo.png" alt="Rightway Academy" class="h-10 w-auto"/>
-          <p class="text-sm text-zinc-600">© <span id="yr"></span> Rightway Academy. All rights reserved.</p>
+          <img src="logo.png" alt="Right Way Academy" style="height:40px;width:auto"/>
+          <p class="text-sm text-zinc-600 dark:text-zinc-400">© <span id="yr"></span> Right Way Academy. All rights reserved.</p>
         </div>
         <nav class="flex gap-4 text-sm">
           <a class="hover:text-primary" href="index.html">Home</a>
           <a class="hover:text-primary" href="academics.html">Academics</a>
           <a class="hover:text-primary" href="news.html">News</a>
-          <a class="hover:text-primary" href "contact.html">Contact</a>
+          <a class="hover:text-primary" href="contact.html">Contact</a>
         </nav>
       </div>
     </footer>
+
   </div>
 
   <!-- Interactivity -->
@@ -325,10 +247,10 @@
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Intersection animations
+    // Intersection animations (progressive)
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+        if(e.isIntersecting){ e.target.classList.add('show','in'); io.unobserve(e.target); }
       });
     }, {threshold:.15});
     document.querySelectorAll('.slide-left, .fade-up').forEach(el=>io.observe(el));
