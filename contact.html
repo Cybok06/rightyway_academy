@@ -26,32 +26,7 @@
           },
           fontFamily: { display: ["Work Sans", "system-ui", "sans-serif"] },
           borderRadius: { DEFAULT:"0.5rem", xl:"0.75rem", "2xl":"1rem", full:"9999px" },
-          letterSpacing: { tightest: "-.02em" },
-          boxShadow: {
-            glow: "0 10px 30px rgba(249,115,6,.25)",
-            card: "0 8px 20px rgba(0,0,0,.06)"
-          },
-          keyframes: {
-            floatup: { "0%":{opacity:0, transform:"translateY(18px)"},
-                       "100%":{opacity:1, transform:"translateY(0)"} },
-            parallax: { "0%":{transform:"translate3d(0,0,0)"},
-                        "100%":{transform:"translate3d(0,12px,0)"} },
-            pulseRing: {
-              "0%":{ boxShadow:"0 0 0 0 rgba(249,115,6,.35)" },
-              "70%":{ boxShadow:"0 0 0 12px rgba(249,115,6,0)" },
-              "100%":{ boxShadow:"0 0 0 0 rgba(249,115,6,0)" }
-            },
-            shine: {
-              "0%":{ backgroundPosition: "-200% 0"},
-              "100%":{ backgroundPosition: "200% 0"}
-            }
-          },
-          animation: {
-            "floatup": "floatup .7s ease forwards",
-            "parallax": "parallax 6s ease-in-out infinite alternate",
-            "pulse-ring": "pulseRing 2.2s cubic-bezier(0.66,0,0,1) infinite",
-            "shine": "shine 2.4s linear infinite"
-          }
+          letterSpacing: { tightest: "-.02em" }
         },
       },
     }
@@ -60,54 +35,21 @@
   <style>
     :root { --dur: 700ms; }
     body { min-height: 100dvh; }
-
-    /* Reveal on view */
     .fade-up { opacity: 0; transform: translateY(14px); transition: opacity var(--dur) ease, transform var(--dur) ease; }
     .show { opacity: 1; transform: translateY(0); }
-
-    /* Micro-interactions */
     .lift { transition: transform .25s ease, box-shadow .25s ease; }
     .lift:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
-
-    .tilt { transition: transform .25s ease, box-shadow .25s ease; transform-style: preserve-3d; }
-    .tilt:hover { transform: rotate3d(1,1,0,6deg) translateY(-2px); }
-
-    .btn-shine {
-      position: relative;
-      background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.35), rgba(255,255,255,.08));
-      background-size: 200% 100%;
-    }
-    .btn-shine:hover { animation: shine 1.8s linear infinite; }
-
-    /* Loading modal */
-    .modal { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0,0,0,.45); backdrop-filter: blur(2px); z-index: 70; }
-    .modal.show { display: grid; }
-    .spinner { width: 56px; height: 56px; border-radius: 9999px; border: 4px solid rgba(255,255,255,.35); border-top-color: white; animation: spin 1s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Decorative blobs */
-    .blob {
-      filter: blur(30px);
-      opacity: .35;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body class="bg-background-light text-zinc-900 font-display">
-
-  <!-- Subtle decorative blobs -->
-  <div class="pointer-events-none fixed inset-0 -z-10">
-    <div class="blob absolute -top-10 -left-10 h-52 w-52 rounded-full bg-primary/30 animate-parallax"></div>
-    <div class="blob absolute bottom-0 right-0 h-64 w-64 rounded-full bg-orange-300/40 animate-parallax" style="animation-delay:.8s"></div>
-  </div>
 
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-background-light/90 backdrop-blur-md border-b border-zinc-200">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-3">
         <!-- Logo + brand text -->
-        <a href="index.html" class="flex items-center gap-3 group" aria-label="Rightway Academy">
-          <img src="logo.png" alt="Rightway Academy" class="h-12 md:h-14 w-auto group-hover:drop-shadow transition"/>
+        <a href="index.html" class="flex items-center gap-3" aria-label="Rightway Academy">
+          <img src="logo.png" alt="Rightway Academy" class="h-12 md:h-14 w-auto"/>
           <span class="hidden sm:block text-xl md:text-2xl font-black tracking-tightest">
             RIGHTWAY <span class="text-primary">ACADEMY</span>
           </span>
@@ -120,7 +62,7 @@
           <a class="hover:text-primary transition" href="admissions.html">Admissions</a>
           <a class="hover:text-primary transition" href="news.html">News</a>
           <a class="text-primary font-semibold" href="contact.html" aria-current="page">Contact</a>
-          <a href="contact.html" class="ml-2 rounded-full bg-primary px-4 py-2 text-white font-semibold lift btn-shine shadow-glow">Get Admission</a>
+          <a href="forms.html" class="ml-2 rounded-full bg-primary px-4 py-2 text-white font-semibold lift">Fill Forms & Download</a>
         </nav>
 
         <button id="menuBtn" class="md:hidden rounded-lg p-2 hover:bg-primary/15" aria-label="Open menu">
@@ -133,6 +75,9 @@
           <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="index.html">Home</a>
           <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="about.html">About</a>
           <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="academics.html">Academics</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="admissions.html">Admissions</a>
+          <a class="rounded-lg px-3 py-2 bg-primary/10 text-primary" href="contact.html">Contact</a>
+          <a class="rounded-lg px-3 py-2 bg-primary text-white" href="forms.html">Fill Forms & Download</a>
         </div>
       </div>
     </div>
@@ -142,12 +87,14 @@
   <section class="relative h-[42vh] md:h-[52vh] bg-cover bg-center"
            style="background-image: linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.15)), url('image12.jpg');">
     <div class="absolute inset-0 flex items-center justify-center text-center text-white px-4">
-      <div class="opacity-0 animate-floatup [animation-delay:.1s]">
+      <div class="fade-up show">
         <h1 class="text-4xl md:text-6xl font-black drop-shadow-xl">Get in Touch</h1>
         <p class="mt-3 opacity-90 max-w-2xl mx-auto">Questions about admissions, programs, or campus life? We’re here to help.</p>
-        <div class="mt-6 inline-flex items-center gap-3">
-          <span class="h-3 w-3 rounded-full bg-primary animate-pulse-ring"></span>
-          <span class="text-sm/none opacity-90">Typical reply within 24 hours</span>
+        <div class="mt-6">
+          <a href="forms.html" class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-white font-bold lift">
+            Fill Forms & Download
+            <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" class="opacity-95"><path d="M224.49,127.51l-72,72a12,12,0,0,1-17-17L187,134H40a12,12,0,0,1,0-24H187L135.51,73.49a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,127.51Z"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -156,7 +103,7 @@
   <main class="container mx-auto px-4 py-10 space-y-12">
     <!-- Contact Info + Map -->
     <section class="grid lg:grid-cols-2 gap-8">
-      <div class="rounded-2xl bg-white p-6 border border-zinc-200 fade-up show shadow-card">
+      <div class="rounded-2xl bg-white p-6 border border-zinc-200 fade-up show">
         <h2 class="text-2xl font-extrabold mb-3">Contact Information</h2>
         <p>Address: 123 Academy Street, Accra, Ghana</p>
         <p class="mt-1">Admissions Line: <strong>053 039 3625</strong></p>
@@ -179,9 +126,8 @@
       </div>
 
       <!-- Embedded Google Map -->
-      <div class="rounded-2xl bg-white p-3 border border-zinc-200 fade-up show shadow-card" style="transition-delay:.06s">
-        <div class="w-full overflow-hidden rounded-xl relative">
-          <div class="absolute inset-x-0 -top-2 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+      <div class="rounded-2xl bg-white p-3 border border-zinc-200 fade-up show" style="transition-delay:.06s">
+        <div class="w-full overflow-hidden rounded-xl">
           <div class="relative" style="padding-bottom: 62%; height:0;">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.754693167288!2d-0.08402712650100072!3d5.748412931687941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf79d9bf19f365%3A0x5bbf5217c29391ce!2sMadina%20junction!5e0!3m2!1sen!2sgh!4v1758998526432!5m2!1sen!2sgh"
@@ -192,147 +138,29 @@
       </div>
     </section>
 
-    <!-- Admissions Contact Form (Front-end sends SMS via Arkesel) -->
-    <section class="rounded-2xl bg-white p-6 md:p-8 border border-zinc-200 fade-up show shadow-card">
-      <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Contact Admissions</h2>
-      <p class="text-zinc-600 mb-6">Fill this out and we’ll notify our admissions line by SMS. We’ll also follow up via email if provided.</p>
-
-      <form id="admissionForm" class="grid md:grid-cols-2 gap-4">
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Student Full Name</label>
-          <input type="text" name="fullname" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="e.g., Ama Mensah" required>
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Student Email</label>
-          <input type="email" name="email" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="name@example.com" required>
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Student Phone</label>
-          <input type="tel" name="phone" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="0XXXXXXXXX or 233XXXXXXXXX" required>
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Program of Interest</label>
-          <select name="program" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" required>
-            <option value="" disabled selected>Select a program</option>
-            <option>General Science</option>
-            <option>General Arts</option>
-            <option>Business</option>
-            <option>General Agriculture</option>
-            <option>Home Economics</option>
-            <option>Visual Arts</option>
-            <option>Technical/Vocational</option>
-            <option>WASSCE (May/June, Nov/Dec)</option>
-            <option>Cambridge GCE O/A Level</option>
-          </select>
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Preferred Intake</label>
-          <select name="intake" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" required>
-            <option value="" disabled selected>Select intake</option>
-            <option>January</option>
-            <option>May</option>
-            <option>September</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Previous School (optional)</label>
-          <input type="text" name="prev_school" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="Previous school name">
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Guardian Name (optional)</label>
-          <input type="text" name="guardian_name" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="Parent/Guardian full name">
-        </div>
-
-        <div class="md:col-span-1">
-          <label class="block text-sm font-medium mb-1">Guardian Phone (optional)</label>
-          <input type="tel" name="guardian_phone" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="0XXXXXXXXX or 233XXXXXXXXX">
-        </div>
-
+    <!-- CTA Card to Fill & Download Forms (replaces your form) -->
+    <section class="rounded-2xl bg-white p-6 md:p-8 border border-zinc-200 fade-up show">
+      <div class="grid md:grid-cols-3 gap-6 items-center">
         <div class="md:col-span-2">
-          <label class="block text-sm font-medium mb-1">Message</label>
-          <textarea name="message" rows="5" class="w-full rounded-lg border-zinc-300 focus:ring-primary focus:border-primary" placeholder="Tell us anything we should know..." required></textarea>
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Admission Forms</h2>
+          <p class="text-zinc-600">Fill our official admission form online and download a clean PDF copy instantly.</p>
         </div>
-
-        <div class="md:col-span-2 flex items-center gap-3">
-          <button type="submit" class="rounded-full bg-primary px-8 py-3 text-white font-bold lift btn-shine shadow-glow" id="submitBtn">
-            Send & Notify Admissions
-          </button>
-          <div id="formStatus" class="text-sm"></div>
+        <div class="md:col-span-1 md:text-right">
+          <a href="forms.html" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-white font-bold lift">
+            Fill Forms & Download
+            <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" class="opacity-95"><path d="M224.49,127.51l-72,72a12,12,0,0,1-17-17L187,134H40a12,12,0,0,1,0-24H187L135.51,73.49a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,127.51Z"/></svg>
+          </a>
         </div>
-      </form>
-
-      <p class="mt-4 text-xs text-zinc-500">
-        By submitting, you agree that we may contact you about your inquiry. We’ll notify admissions at <strong>0530393625</strong> by SMS.
-      </p>
+      </div>
     </section>
 
-    <!-- Socials (with logos + handles + motion) -->
-    <section class="rounded-2xl bg-white p-6 border border-zinc-200 fade-up show shadow-card">
+    <!-- Socials -->
+    <section class="rounded-2xl bg-white p-6 border border-zinc-200 fade-up show">
       <h2 class="text-2xl font-extrabold mb-4">Follow Us</h2>
-
-      <!-- TIP: replace the logo file names if yours differ -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Facebook -->
-        <a href="https://facebook.com/rightwayacademy" target="_blank" rel="noopener"
-           class="group flex items-center gap-4 rounded-xl border p-4 hover:bg-primary/5 tilt">
-          <img src="facebook.png" alt="Facebook" class="h-8 w-8 object-contain rounded"/>
-          <div class="flex-1">
-            <div class="font-semibold">Facebook</div>
-            <div class="text-xs text-zinc-500 group-hover:text-zinc-700">@rightwayacademy</div>
-          </div>
-          <span class="opacity-0 group-hover:opacity-100 transition"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/rightwayacademy" target="_blank" rel="noopener"
-           class="group flex items-center gap-4 rounded-xl border p-4 hover:bg-primary/5 tilt">
-          <img src="instagram.png" alt="Instagram" class="h-8 w-8 object-contain rounded"/>
-          <div class="flex-1">
-            <div class="font-semibold">Instagram</div>
-            <div class="text-xs text-zinc-500 group-hover:text-zinc-700">@rightwayacademy</div>
-          </div>
-          <span class="opacity-0 group-hover:opacity-100 transition"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-        </a>
-
-        <!-- TikTok -->
-        <a href="https://www.tiktok.com/@rightwayacademy" target="_blank" rel="noopener"
-           class="group flex items-center gap-4 rounded-xl border p-4 hover:bg-primary/5 tilt">
-          <img src="tiktok.png" alt="TikTok" class="h-8 w-8 object-contain rounded"/>
-          <div class="flex-1">
-            <div class="font-semibold">TikTok</div>
-            <div class="text-xs text-zinc-500 group-hover:text-zinc-700">@rightwayacademy</div>
-          </div>
-          <span class="opacity-0 group-hover:opacity-100 transition"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-        </a>
-
-        <!-- YouTube -->
-        <a href="https://youtube.com/@rightwayacademy" target="_blank" rel="noopener"
-           class="group flex items-center gap-4 rounded-xl border p-4 hover:bg-primary/5 tilt">
-          <img src="youtube.png" alt="YouTube" class="h-8 w-8 object-contain rounded"/>
-          <div class="flex-1">
-            <div class="font-semibold">YouTube</div>
-            <div class="text-xs text-zinc-500 group-hover:text-zinc-700">@rightwayacademy</div>
-          </div>
-          <span class="opacity-0 group-hover:opacity-100 transition"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-        </a>
-
-        <!-- X (Twitter) -->
-        <a href="https://x.com/rightwayacademy" target="_blank" rel="noopener"
-           class="group flex items-center gap-4 rounded-xl border p-4 hover:bg-primary/5 tilt">
-          <img src="x.png" alt="X" class="h-8 w-8 object-contain rounded"/>
-          <div class="flex-1">
-            <div class="font-semibold">X (Twitter)</div>
-            <div class="text-xs text-zinc-500 group-hover:text-zinc-700">@rightwayacademy</div>
-          </div>
-          <span class="opacity-0 group-hover:opacity-100 transition"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-        </a>
+      <div class="flex flex-wrap gap-3 text-sm">
+        <a href="https://web.facebook.com/samrightwayacademy.gh" class="rounded-full border px-4 py-2 hover:bg-primary/10">Facebook</a>
+        <a href="https://www.instagram.com/rightwayacademy_official/" class="rounded-full border px-4 py-2 hover:bg-primary/10">Instagram</a>
+        <a href="https://www.tiktok.com/@samrightwayacademy" class="rounded-full border px-4 py-2 hover:bg-primary/10">TikTok</a>
       </div>
     </section>
   </main>
@@ -345,7 +173,7 @@
           <span class="text-base font-bold tracking-tightest">RIGHTWAY <span class="text-primary">ACADEMY</span></span>
         </div>
         <p>123 Academy Street<br>Accra, Ghana</p>
-        <p class="mt-1">Phone: 053 039 3625<br>Email: info@samrightwayacademy.edu.gh</p>
+        <p class="mt-1">Phone:+233544855738<br>Email: info@samrightwayacademy.edu.gh</p>
       </div>
       <div>
         <h4 class="font-bold mb-2">Quick Links</h4>
@@ -364,14 +192,6 @@
     </div>
   </footer>
 
-  <!-- Loading Modal -->
-  <div id="loadingModal" class="modal">
-    <div class="rounded-2xl bg-white/95 p-6 flex flex-col items-center gap-3 shadow-xl">
-      <div class="spinner"></div>
-      <p class="text-sm font-medium">Submitting… please wait</p>
-    </div>
-  </div>
-
   <script>
     // Year + mobile menu
     document.getElementById('yr').textContent = new Date().getFullYear();
@@ -380,128 +200,11 @@
       m.classList.toggle('hidden');
     });
 
-    // Reveal-on-view (keep + enhance)
+    // Reveal on view
     const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('show');
-          io.unobserve(e.target);
-        }
-      });
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
     }, {threshold:.15});
     document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
-
-    // ---- Phone normalizer (Ghana) ----
-    function normalizeGHPhone(raw) {
-      if (!raw) return null;
-      let p = String(raw).trim().replace(/\s|-/g, '').replace(/^\+/, '');
-      if (p.startsWith('0') && p.length === 10) p = '233' + p.slice(1);
-      if (p.startsWith('233') && p.length === 12) return p;
-      return null;
-    }
-
-    // ---- Build SMS message for Admissions line ----
-    function buildAdmissionMessage(formData) {
-      const name = formData.fullname || 'Prospective Student';
-      const email = formData.email || 'N/A';
-      const phone = formData.phone || 'N/A';
-      const program = formData.program || 'N/A';
-      const intake = formData.intake || 'N/A';
-      const prev_school = formData.prev_school ? `Prev School: ${formData.prev_school}. ` : '';
-      const guardian = formData.guardian_name ? `Guardian: ${formData.guardian_name}. ` : '';
-      const guardianPhone = formData.guardian_phone ? `Guardian Phone: ${formData.guardian_phone}. ` : '';
-      const msgShort = (formData.message || '').trim().slice(0, 140);
-
-      return (
-        `ADMISSIONS ENQUIRY\n` +
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Phone: ${phone}\n` +
-        `Program: ${program} | Intake: ${intake}\n` +
-        `${prev_school}${guardian}${guardianPhone}` +
-        (msgShort ? `Msg: ${msgShort}` : '')
-      );
-    }
-
-    // ---- Direct front-end Arkesel send (GET). Uses fallback if CORS blocks response. ----
-    async function sendSMSViaArkesel(toMsisdn, message) {
-      // WARNING: Exposing API key in front end is insecure. Implemented per your request.
-      const ARKESEL_API_KEY = "c1JKV21keG1DdnJZQW1zc2JpVks"; // from your Python
-      const SENDER_ID = "Rightway Admission";               // requested sender name
-
-      const url =
-        "https://sms.arkesel.com/sms/api?action=send-sms" +
-        `&api_key=${encodeURIComponent(ARKESEL_API_KEY)}` +
-        `&to=${encodeURIComponent(toMsisdn)}` +
-        `&from=${encodeURIComponent(SENDER_ID)}` +
-        `&sms=${encodeURIComponent(message)}`;
-
-      try {
-        const res = await fetch(url, { method: "GET" });
-        if (!res.ok) throw new Error("Non-200 from Arkesel");
-        const txt = await res.text();
-        if (/"code"\s*:\s*"ok"/i.test(txt)) return { ok: true, raw: txt };
-        if (/ok/i.test(txt)) return { ok: true, raw: txt };
-        return { ok: false, raw: txt };
-      } catch (err) {
-        // Fallback: image beacon to bypass CORS; cannot read response but request still fires
-        return await new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve({ ok: true, raw: "img-beacon" });
-          img.onerror = () => resolve({ ok: false, raw: "img-error" });
-          img.src = url + `&cacheBust=${Date.now()}`;
-        });
-      }
-    }
-
-    // ---- Submit handler with loading modal ----
-    const form = document.getElementById('admissionForm');
-    const statusBox = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
-    const loadingModal = document.getElementById('loadingModal');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusBox.textContent = '';
-      statusBox.className = 'text-sm';
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-      loadingModal.classList.add('show');
-
-      const fd = new FormData(form);
-      const data = Object.fromEntries(fd.entries());
-
-      const studentPhone = normalizeGHPhone(data.phone);
-      const admissionsMsisdn = normalizeGHPhone("0530393625"); // -> 233530393625
-      if (!admissionsMsisdn) {
-        statusBox.className = 'text-sm text-red-600';
-        statusBox.textContent = 'Admissions phone invalid.';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send & Notify Admissions';
-        loadingModal.classList.remove('show');
-        return;
-      }
-
-      const msg = buildAdmissionMessage({
-        ...data,
-        phone: studentPhone ? `+${studentPhone}` : data.phone
-      });
-
-      const { ok } = await sendSMSViaArkesel(admissionsMsisdn, msg);
-
-      if (ok) {
-        statusBox.className = 'text-sm text-green-600';
-        statusBox.textContent = 'Sent. For further enquiries, reach us on 053 039 3625.';
-        form.reset();
-      } else {
-        statusBox.className = 'text-sm text-amber-600';
-        statusBox.textContent = 'We captured your details, but SMS might not have been delivered. For enquiries, call 053 039 3625.';
-      }
-
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send & Notify Admissions';
-      loadingModal.classList.remove('show');
-    });
   </script>
 </body>
 </html>
