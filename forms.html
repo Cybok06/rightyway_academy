@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sam Rightway Academy • Admission Form</title>
+
+  <!-- Fonts + Tailwind -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap"></noscript>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link rel="icon" href="logo.png" type="image/png"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary:"#f97306", ink:"#1f2937", line:"#d1d5db" },
+          fontFamily:{ display:["Work Sans","system-ui","sans-serif"] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{ --watermark-url: url("logo.png"); }
+
+    body{
+      background:#f6f6f6;
+      font-family:'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#111827;
+    }
+
+    /* Sheet (responsive on screen, exact A4 on print) */
+    .sheet{
+      width:100%;
+      max-width:210mm;                /* keep A4 width cap on desktops */
+      background:#fff;
+      box-shadow:0 10px 25px rgb(0 0 0 / 10%);
+      position:relative;
+      margin:16px auto;
+    }
+    @media (min-width:480px){ .sheet{ margin:24px auto; } }
+
+    /* Watermark */
+    .sheet::after{
+      content:"";
+      position:absolute;
+      inset:15% 7% 8% 7%;            /* responsive for screens */
+      background-image:var(--watermark-url);
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size:72% auto;
+      opacity:.08;
+      pointer-events:none;
+    }
+
+    /* Underline inputs like the paper form */
+    .line-input{
+      display:block; width:100%; background:transparent; border:0;
+      border-bottom:1px solid #9ca3af; padding:2px 0 4px 0; color:#111827; outline:none;
+    }
+    .line-input::placeholder{ color:#9ca3af; }
+
+    /* Print to A4 */
+    @page{ size:A4; margin:14mm; }
+    @media print{
+      body{ background:#fff; }
+      .no-print{ display:none !important; }
+      .sheet{
+        width:210mm; min-height:297mm; margin:0; box-shadow:none;
+      }
+      .sheet::after{
+        inset:80mm 25mm 40mm 25mm;   /* precise placement on paper */
+        background-size:70% auto;
+        opacity:.10;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top actions -->
+  <header class="sticky top-0 z-20 bg-white/90 backdrop-blur shadow-sm no-print">
+    <div class="max-w-[210mm] mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="text-sm text-gray-600 hover:text-primary">&larr; Home</a>
+      <h1 class="font-bold">Sam Rightway Academy</h1>
+      <div class="flex items-center gap-2">
+        <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">
+          Download Filled PDF
+        </button>
+        <button id="resetBtn" class="inline-flex items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">
+          Clear Form
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- A4 Form (mobile-first) -->
+  <form id="rwaForm" class="sheet px-4 sm:px-8 md:px-10 py-6 sm:py-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="flex items-center justify-center gap-3">
+        <img src="logo.png" alt="Rightway Academy Logo" class="h-10 w-10 sm:h-12 sm:w-12 object-contain" onerror="this.style.display='none'">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold tracking-wide">RIGHTWAY ACADEMY</h2>
+          <p class="text-[11px] sm:text-[12px] leading-tight">
+            <span class="font-medium">TEL:</span> +233 (0) 540 322 494 / 544 855 738
+            &nbsp;&nbsp; <span class="font-medium">EMAIL:</span> samueltarvey140@gmail.com
+          </p>
+        </div>
+      </div>
+      <div class="mt-3 font-bold tracking-wide">ADMISSION FORM</div>
+    </div>
+
+    <hr class="border-line my-4">
+
+    <!-- Numbered fields (stack on mobile, row on sm+) -->
+    <section class="space-y-3 text-[14px]">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">1.</span><label class="sm:min-w-[140px]">Surname:</label><input name="surname" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">2.</span><label class="sm:min-w-[140px]">First Name:</label><input name="first_name" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">3.</span><label class="sm:min-w-[140px]">Middle Name:</label><input name="middle_name" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">4.</span><label class="sm:min-w-[140px]">Date of Birth:</label><input name="dob" type="date" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">5.</span><label class="sm:min-w-[140px]">Year of Completing JHS:</label><input name="year_complete_jhs" type="number" inputmode="numeric" class="line-input" placeholder="YYYY">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">6.</span><label class="sm:min-w-[140px]">JHS Index Number:</label><input name="jhs_index" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">7.</span><label class="sm:min-w-[140px]">Programme / Course:</label>
+        <input name="programme" class="line-input" list="programmes">
+        <datalist id="programmes">
+          <option value="Junior High School"></option>
+          <option value="Senior High School"></option>
+          <option value="Science"></option>
+          <option value="Business"></option>
+          <option value="General Arts"></option>
+          <option value="Home Economics"></option>
+          <option value="Visual Arts"></option>
+          <option value="Technical"></option>
+        </datalist>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+        <span class="sm:w-6">8.</span><label class="sm:min-w-[140px]">Gender:</label>
+        <div class="flex items-center gap-6">
+          <label class="inline-flex items-center gap-2"><input type="radio" name="gender" value="Male">Male</label>
+          <label class="inline-flex items-center gap-2"><input type="radio" name="gender" value="Female">Female</label>
+          <label class="inline-flex items-center gap-2"><input type="radio" name="gender" value="Other">Other</label>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">9.</span><label class="sm:min-w-[140px]">Personal Telephone Number:</label><input name="phone" type="tel" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">10.</span><label class="sm:min-w-[140px]">Location:</label><input name="location" class="line-input">
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span class="sm:w-6">11.</span><label class="sm:min-w-[140px]">Email Address:</label><input name="email" type="email" class="line-input">
+      </div>
+    </section>
+
+    <!-- Elective Subjects -->
+    <section class="mt-6">
+      <h3 class="font-semibold text-[14px]">ELECTIVE SUBJECTS</h3>
+      <div class="mt-2 space-y-3 text-[14px]">
+        <div class="flex items-center gap-3"><span class="w-6">1.</span><input name="elective1" class="line-input"></div>
+        <div class="flex items-center gap-3"><span class="w-6">2.</span><input name="elective2" class="line-input"></div>
+        <div class="flex items-center gap-3"><span class="w-6">3.</span><input name="elective3" class="line-input"></div>
+        <div class="flex items-center gap-3"><span class="w-6">4.</span><input name="elective4" class="line-input"></div>
+      </div>
+    </section>
+
+    <!-- Guardian/Parent Info -->
+    <section class="mt-6">
+      <h3 class="font-semibold text-[14px]">GUARDIAN / PARENT INFO</h3>
+      <div class="mt-2 space-y-3 text-[14px]">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[120px]">Name:</label><input name="guardian_name" class="line-input">
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[120px]">Contact:</label><input name="guardian_contact" class="line-input">
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[120px]">Location:</label><input name="guardian_location" class="line-input">
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[120px]">Occupation:</label><input name="guardian_occupation" class="line-input">
+        </div>
+      </div>
+    </section>
+
+    <!-- Official Use Only -->
+    <section class="mt-6 text-[14px]">
+      <h3 class="font-semibold mb-2">OFFICIAL USE ONLY</h3>
+      <div class="rounded-md border border-gray-400 p-3 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[140px]">Directors Remark:</label>
+          <input name="director_remark" class="line-input">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+            <label class="sm:min-w-[60px]">Sign:</label>
+            <input name="sign" class="line-input">
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+            <label class="sm:min-w-[60px]">Date:</label>
+            <input name="official_date" type="date" class="line-input">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-6 text-center text-[11px] text-gray-500">http://bit.ly/RightwayAcademy</footer>
+  </form>
+
+  <!-- Footer nav (screen only) -->
+  <footer class="no-print bg-white/95 backdrop-blur border-t border-gray-200">
+    <nav class="max-w-[210mm] mx-auto flex justify-around p-2 text-xs text-gray-600">
+      <a class="hover:text-primary" href="index.html">Home</a>
+      <a class="hover:text-primary" href="#">Academics</a>
+      <span class="text-primary font-medium">Admissions</span>
+      <a class="hover:text-primary" href="#">News</a>
+      <a class="hover:text-primary" href="#">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    // -------- LocalStorage (autosave + restore) --------
+    const FORM_ID = 'rwaForm';
+    const STORAGE_KEY = 'rwa_admission_form_v1';
+    const form = document.getElementById(FORM_ID);
+
+    // Restore on load
+    (function restoreForm(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const data = JSON.parse(raw) || {};
+        const els = form.elements;
+        for (const name in data) {
+          if (!Object.prototype.hasOwnProperty.call(data, name)) continue;
+          const val = data[name];
+          const fieldList = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+          if (!fieldList.length) continue;
+
+          // radios
+          if (fieldList[0].type === 'radio') {
+            fieldList.forEach(r => r.checked = (r.value === val));
+          } else if (fieldList[0].type === 'checkbox') {
+            fieldList[0].checked = !!val;
+          } else {
+            fieldList[0].value = val;
+          }
+        }
+      }catch(e){ console.warn('Restore failed', e); }
+    })();
+
+    // Save helper
+    function snapshotForm(){
+      const data = {};
+      const els = form.elements;
+      for (let i=0;i<els.length;i++){
+        const el = els[i];
+        if (!el.name) continue;
+        if (el.type === 'radio') {
+          if (el.checked) data[el.name] = el.value;
+        } else if (el.type === 'checkbox') {
+          data[el.name] = el.checked;
+        } else {
+          data[el.name] = el.value;
+        }
+      }
+      data._updatedAt = Date.now();
+      return data;
+    }
+
+    // Throttled save on input/change
+    let t=null;
+    function queueSave(){
+      clearTimeout(t);
+      t = setTimeout(()=>{
+        try{
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotForm()));
+        }catch(e){ console.warn('Save failed', e); }
+      }, 250);
+    }
+    form.addEventListener('input', queueSave, true);
+    form.addEventListener('change', queueSave, true);
+
+    // Clear form + storage
+    document.getElementById('resetBtn')?.addEventListener('click', () => {
+      form.reset();
+      form.querySelectorAll('input[type="date"]').forEach(el => el.value = "");
+      localStorage.removeItem(STORAGE_KEY);
+    });
+
+    // Persist once before print (in case)
+    window.addEventListener('beforeprint', () => {
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotForm())); }catch(e){}
+    });
+  </script>
+</body>
+</html>
